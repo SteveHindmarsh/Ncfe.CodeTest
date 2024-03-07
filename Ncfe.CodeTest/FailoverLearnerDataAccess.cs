@@ -1,5 +1,8 @@
 ﻿namespace Ncfe.CodeTest
 {
+    /// <summary>
+    /// Cannot change signature
+    /// </summary>
     public class FailoverLearnerDataAccess
     {
         public static LearnerResponse GetLearnerById(int id)

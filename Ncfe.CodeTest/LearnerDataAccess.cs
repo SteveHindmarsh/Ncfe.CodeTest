@@ -1,5 +1,8 @@
 ﻿namespace Ncfe.CodeTest
 {
+    /// <summary>
+    /// Cannot change signature
+    /// </summary>
     public class LearnerDataAccess
     {
         public LearnerResponse LoadLearner(int learnerId)
