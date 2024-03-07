@@ -10,16 +10,23 @@ namespace Ncfe.CodeTest.UnitTests
     public class LearnerServiceUnitTests
     {
         [TestMethod]
-        [DataRow(true, 100, true)]
-        [DataRow(false, 100, true)]
+        [DataRow(1,true,100)]
+        [DataRow(1,false,100)]
         public void RetrieveLearner(
+            int learnerId,
             bool isFailoverModeEnabled,
-            int failoverFailedRequestsTriggerCount,
-            bool isArchived)
+            int failoverFailedRequestsTriggerCount)
         {
+            Learner learner;
+
             LearnerService learnerService = new LearnerService(isFailoverModeEnabled, failoverFailedRequestsTriggerCount);
-            Learner learner = learnerService.GetLearner(1, isArchived);
+            learner = learnerService.GetLearner(learnerId);
+            Assert.IsNull(learner);
+
+            ArchivedLearnerService archivedLearnerService = new ArchivedLearnerService(learnerService);
+            learner = archivedLearnerService.GetLearner(learnerId);
             Assert.IsNotNull(learner);
         }
+
     }
 }
