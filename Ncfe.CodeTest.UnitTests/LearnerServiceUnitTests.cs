@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ncfe.CodeTest.Logic;
+using Ncfe.CodeTest.Model;
 using System;
 using System.Configuration;
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ncfe.CodeTest
+namespace Ncfe.CodeTest.DataAccess
 {
     public class FailoverEntry
     {

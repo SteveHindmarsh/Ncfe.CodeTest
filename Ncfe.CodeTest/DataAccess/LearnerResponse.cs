@@ -1,4 +1,6 @@
-﻿namespace Ncfe.CodeTest
+﻿using Ncfe.CodeTest.Model;
+
+namespace Ncfe.CodeTest.DataAccess
 {
     public class LearnerResponse
     {

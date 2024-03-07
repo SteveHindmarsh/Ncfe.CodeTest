@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Ncfe.CodeTest
+namespace Ncfe.CodeTest.DataAccess
 {
     public class FailoverRepository
     {

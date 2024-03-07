@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Ncfe.CodeTest.DataAccess;
+using Ncfe.CodeTest.Model;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ncfe.CodeTest
+namespace Ncfe.CodeTest.Logic
 {
     //public class LearnerService2
     //{
