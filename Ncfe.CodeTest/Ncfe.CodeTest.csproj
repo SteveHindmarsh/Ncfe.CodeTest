@@ -45,10 +45,12 @@
     <Compile Include="DataAccess\FailoverEntry.cs" />
     <Compile Include="DataAccess\FailoverLearnerDataAccess.cs" />
     <Compile Include="DataAccess\FailoverRepository.cs" />
-    <Compile Include="Logic\ArchivedLearnerService.cs" />
-    <Compile Include="Logic\ILearnerService.cs" />
+    <Compile Include="Logic\FailoverLearnerReadServiceDecorator.cs" />
+    <Compile Include="Logic\ArchivedLearnerReadServiceDecorator.cs" />
+    <Compile Include="Logic\ILearnerReadService.cs" />
     <Compile Include="Logic\LearnerService.cs" />
-    <Compile Include="Logic\LearnerServiceDecorator.cs" />
+    <Compile Include="Logic\LearnerReadService.cs" />
+    <Compile Include="Logic\BaseLearnerReadServiceDecorator.cs" />
     <Compile Include="Model\Learner.cs" />
     <Compile Include="DataAccess\LearnerDataAccess.cs" />
     <Compile Include="DataAccess\LearnerResponse.cs" />
