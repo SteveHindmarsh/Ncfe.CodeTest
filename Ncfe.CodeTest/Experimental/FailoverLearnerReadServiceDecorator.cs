@@ -1,9 +1,9 @@
 ﻿using Ncfe.CodeTest.DataAccess;
 using Ncfe.CodeTest.Model;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 
-namespace Ncfe.CodeTest.Logic
+namespace Ncfe.CodeTest.Experimental
 {
     /// <summary>
     /// Retrieves a Learner from the Failover Repository if active otherwise obtains the Learner from my wrappers implementation.
@@ -12,42 +12,38 @@ namespace Ncfe.CodeTest.Logic
     {
         public bool IsFailoverModeEnabled { get; set; }
         public int FailoverFailedRequestsTriggerCount { get; set; }
+
+        private IFailoverRepository _FailoverRepository { get; set; }
+        private IFailoverLearnerDataAccess _FailoverLearnerDataAccess { get; set; }//TODO: Refactor method name to give same interface
+        private ILearnerDataAccess _LearnerDataAccess { get; set; }//TODO: Refactor method name to give same interface
+
         public FailoverLearnerReadServiceDecorator(
             ILearnerReadService learnerReadService,
             bool isFailoverModeEnabled,
-            int failoverFailedRequestsTriggerCount)
+            int failoverFailedRequestsTriggerCount, 
+            IFailoverRepository failoverRepository,
+            IFailoverLearnerDataAccess failoverLearnerDataAccess,
+            ILearnerDataAccess learnerDataAccess)
             : base(learnerReadService)
         {
             IsFailoverModeEnabled = isFailoverModeEnabled;
             FailoverFailedRequestsTriggerCount = failoverFailedRequestsTriggerCount;
+            _FailoverRepository = failoverRepository;
+            _FailoverLearnerDataAccess = failoverLearnerDataAccess;
+            _LearnerDataAccess = learnerDataAccess;
         }
 
         public override Learner GetLearner(int learnerId)
         {
-            FailoverRepository failoverRespository = new FailoverRepository();
-            List<FailoverEntry> failoverEntries = failoverRespository.GetFailOverEntries();
-
-            int failedRequests = 0;
-
-            foreach (FailoverEntry failoverEntry in failoverEntries)
-            {
-                if (failoverEntry.DateTime > DateTime.Now.AddMinutes(-10))
-                {
-                    failedRequests++;
-                }
-            }
+            var failedRequestsCount = _FailoverRepository.GetFailOverEntries().Count(failoverEntry => failoverEntry.DateTime > DateTime.Now.AddMinutes(-10));
 
             Learner learner = null;
 
-            if (failedRequests > FailoverFailedRequestsTriggerCount && IsFailoverModeEnabled)
-            {
-                LearnerResponse learnerResponse = FailoverLearnerDataAccess.GetLearnerById(learnerId);
-                learner = learnerResponse?.Learner;
-            }
+            if (IsFailoverModeEnabled && failedRequestsCount > FailoverFailedRequestsTriggerCount)
+                learner = _FailoverLearnerDataAccess.GetLearnerById(learnerId);
             else
-            {
-                learner = base.GetLearner(learnerId);
-            }
+                learner = _LearnerDataAccess.LoadLearner(learnerId);
+
 
             //This section of code, which retrieved an archived Learner if it was indicated as existing in the archive
             //on the LearnerResponse.IsArchived property, is intentionaly removed as the client already knows whether it

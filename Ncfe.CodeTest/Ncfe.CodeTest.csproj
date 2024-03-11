@@ -41,16 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccess\ArchivedDataService.cs" />
+    <Compile Include="DataAccess\IFailoverRepository.cs" />
+    <Compile Include="DataAccess\IFailoverLearnerDataAccess.cs" />
+    <Compile Include="Logic\IArchivedDataService.cs" />
+    <Compile Include="Logic\ArchivedDataService.cs" />
     <Compile Include="DataAccess\FailoverEntry.cs" />
     <Compile Include="DataAccess\FailoverLearnerDataAccess.cs" />
     <Compile Include="DataAccess\FailoverRepository.cs" />
-    <Compile Include="Logic\FailoverLearnerReadServiceDecorator.cs" />
-    <Compile Include="Logic\ArchivedLearnerReadServiceDecorator.cs" />
-    <Compile Include="Logic\ILearnerReadService.cs" />
+    <Compile Include="DataAccess\ILearnerDataAccess.cs" />
+    <Compile Include="Logic\ILearnerService.cs" />
     <Compile Include="Logic\LearnerService.cs" />
-    <Compile Include="Logic\LearnerReadService.cs" />
-    <Compile Include="Logic\BaseLearnerReadServiceDecorator.cs" />
+    <Compile Include="Experimental\FailoverLearnerReadServiceDecorator.cs" />
+    <Compile Include="Experimental\ArchivedLearnerReadServiceDecorator.cs" />
+    <Compile Include="Experimental\ILearnerReadService.cs" />
+    <Compile Include="Experimental\LearnerService.cs" />
+    <Compile Include="Experimental\LearnerReadService.cs" />
+    <Compile Include="Experimental\BaseLearnerReadServiceDecorator.cs" />
     <Compile Include="Model\Learner.cs" />
     <Compile Include="DataAccess\LearnerDataAccess.cs" />
     <Compile Include="DataAccess\LearnerResponse.cs" />

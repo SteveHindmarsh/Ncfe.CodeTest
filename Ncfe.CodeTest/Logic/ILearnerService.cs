@@ -2,7 +2,7 @@
 
 namespace Ncfe.CodeTest.Logic
 {
-    public interface ILearnerReadService
+    public interface ILearnerService
     {
         Learner GetLearner(int learnerId);
     }

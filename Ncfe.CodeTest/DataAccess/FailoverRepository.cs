@@ -2,7 +2,7 @@
 
 namespace Ncfe.CodeTest.DataAccess
 {
-    public class FailoverRepository
+    public class FailoverRepository: IFailoverRepository
     {
         public List<FailoverEntry> GetFailOverEntries()
         {

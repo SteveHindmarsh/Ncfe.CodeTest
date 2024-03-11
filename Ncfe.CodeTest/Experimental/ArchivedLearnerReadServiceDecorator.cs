@@ -1,7 +1,7 @@
-﻿using Ncfe.CodeTest.DataAccess;
+﻿using Ncfe.CodeTest.Logic;
 using Ncfe.CodeTest.Model;
 
-namespace Ncfe.CodeTest.Logic
+namespace Ncfe.CodeTest.Experimental
 {
     /// <summary>
     /// Retrieves a Learner from the Archive Repository

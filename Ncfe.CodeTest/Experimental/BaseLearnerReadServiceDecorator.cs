@@ -1,8 +1,8 @@
 ﻿using Ncfe.CodeTest.Model;
 
-namespace Ncfe.CodeTest.Logic
+namespace Ncfe.CodeTest.Experimental
 {
-    public abstract class BaseLearnerReadServiceDecorator 
+    public abstract class BaseLearnerReadServiceDecorator
     {
         private ILearnerReadService _LearnerReadService;
         public BaseLearnerReadServiceDecorator(ILearnerReadService learnerReadService)
